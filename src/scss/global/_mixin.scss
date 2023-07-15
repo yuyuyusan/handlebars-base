@@ -1,0 +1,66 @@
+// ------------------------------
+// mixin
+// ------------------------------
+@use 'variables' as *;
+
+@mixin pc-m {
+  @media screen and (max-width: ($pc-m)) {
+    @content;
+  }
+}
+
+@mixin pc-s {
+  @media screen and (max-width: ($pc-s)) {
+    @content;
+  }
+}
+
+@mixin tab {
+  @media screen and (max-width: ($tab)) {
+    @content;
+  }
+}
+
+@mixin sp {
+  @media screen and (max-width: ($sp)) {
+    @content;
+  }
+}
+
+// ----------
+// margin
+// ----------
+@mixin marginTandB($value: 40px) {
+  margin: $value 0;
+  @if ($value > 60px) {
+    @include tab {
+      margin: calc($value / 2) 0;
+    }
+  }
+}
+// ----------
+// padding
+// ----------
+@mixin paddingTandB($value: 40px) {
+  padding: $value 0;
+  @if ($value > 60px) {
+    @include tab {
+      padding: calc($value / 2) 0;
+    }
+  }
+}
+// ----------
+// section
+// ----------
+@mixin sectionBody($calc: 100px, $width: $pc-s) {
+  width: min(100% - $calc, $width);
+  margin: 0 auto;
+  @if ($calc > 40px) {
+    @include sp {
+      width: min(100% - calc($calc / 2), $width);
+    }
+  }
+}
+// ----------
+// sectionTitle
+// ----------
